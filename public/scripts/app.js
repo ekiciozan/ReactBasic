@@ -2,57 +2,39 @@
 
 //JSX
 var root = document.getElementById('root');
-var template = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", {
-  id: "header"
-}, "Hellooo"), /*#__PURE__*/React.createElement("div", null, "Lorem ipsum dolor sit."), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, "Lorem, ipsum. "), /*#__PURE__*/React.createElement("li", null, "Lorem, ipsum. "), /*#__PURE__*/React.createElement("li", null, "Lorem, ipsum. ")));
-/////////////////////////////////////////////////////////////////////////////               
-var product = {
-  name: "Samsung S12",
-  price: 13000,
-  description: "Açıklama",
-  color: ['red', 'blue']
+var app = {
+  title: "Todo Application",
+  description: "Lorem ipsum dolor sit",
+  items: []
 };
-//  function formatPrice(p){
-//    return p.price + ' TL';
-//  }
-function getDescription(p) {
-  if (p.description) {
-    return /*#__PURE__*/React.createElement("p", {
-      id: "product-desc"
-    }, p.description);
+function onFormSubmit(event) {
+  event.preventDefault(); // form submit olmasın diye. sayfa yenilenmesin 
+  var item = event.target.elements.txtItem.value;
+  console.log(item);
+  if (item) {
+    app.items.push(item);
+    event.target.elements.txtItem.value = '';
+    render();
   }
+  console.log("form submitted");
 }
-var template2 = /*#__PURE__*/React.createElement("div", {
-  id: "product-detail"
-}, /*#__PURE__*/React.createElement("h2", {
-  id: "product-name"
-}, "name: ", product.name ? product.name : 'no name', " "), /*#__PURE__*/React.createElement("p", {
-  id: "product-fiyat"
-}, "price:", product.price == 0 ? 'free' : product.price), getDescription(product), /*#__PURE__*/React.createElement("p", null, product.color.length > 0 ? 'there are color options' : 'no options'));
-/////////////////////////////////////////////////////////////////////////////
-var number = 0;
-function addOne() {
-  console.log("Add one");
-  number++;
-  renderApp();
+function clearItems() {
+  app.items = [];
+  render();
 }
-var minusOne = function minusOne() {
-  console.log("Minus one");
-  number--;
-  renderApp();
-};
-
-//ReactDOM
-function renderApp() {
-  var template3 = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, " Number: ", number), /*#__PURE__*/React.createElement("button", {
-    id: "btnPluseOne",
-    className: "btnRed",
-    onClick: addOne
-  }, " +1 "), /*#__PURE__*/React.createElement("button", {
-    id: "btnMinusOne",
-    className: "btnBlue",
-    onClick: minusOne
-  }, " -1 "));
-  ReactDOM.render(template3, root);
+function render() {
+  var template = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", {
+    id: "header"
+  }, app.title), /*#__PURE__*/React.createElement("div", null, app.description), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, " Lorem ipsum dolor sit"), /*#__PURE__*/React.createElement("li", null, " Lorem ipsum dolor sit")), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("button", {
+    onClick: clearItems
+  }, " Clear Items")), /*#__PURE__*/React.createElement("p", null, app.items.length), /*#__PURE__*/React.createElement("form", {
+    onSubmit: onFormSubmit
+  }, /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    name: "txtItem"
+  }), /*#__PURE__*/React.createElement("button", {
+    type: "submit"
+  }, " Add Item")));
+  ReactDOM.render(template, root);
 }
-renderApp();
+render();
