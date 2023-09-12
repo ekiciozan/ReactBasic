@@ -8,4 +8,3 @@ console.log(nameLet); */
 
 /* const nameConst = 'Ozan';
 console.log(nameConst); */
-"use strict";

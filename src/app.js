@@ -5,7 +5,7 @@
       var app = {
          title: "Todo Application",
          description : "Lorem ipsum dolor sit",
-         items : []
+         items : ['item1']
       }
 
    function onFormSubmit(event){
@@ -24,13 +24,21 @@
       render();
    }
       function render() {
+            var numbers = [1,2,3,4,5];
+        
             var template = (<div> 
                <h1 id="header">{app.title}</h1>
                <div>{app.description}</div>
-               <ul>
-                  <li> Lorem ipsum dolor sit</li>
-                  <li> Lorem ipsum dolor sit</li>
-               </ul>
+                  {
+                     <ul>
+                     
+                        {
+                           app.items.map((item,index) => {
+                            return <li key = {index}>{item}</li>
+                           })
+                       }
+                        </ul>
+                     }
                <p>
                   <button onClick={clearItems}> Clear Items</button>
                </p>
