@@ -8,3 +8,10 @@ console.log(nameLet); */
 
 /* const nameConst = 'Ozan';
 console.log(nameConst); */
+
+var city = 'İstanbul';
+if(true){
+    var city = 'Kocaeli';
+    console.log(city);
+}
+console.log(city);
