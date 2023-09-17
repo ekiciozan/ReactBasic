@@ -26,7 +26,17 @@ var TodoApp = /*#__PURE__*/function (_React$Component) {
   _createClass(TodoApp, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Header, null), /*#__PURE__*/React.createElement(TodoList, null), /*#__PURE__*/React.createElement(Action, null));
+      var app = {
+        title: "Todo Application",
+        description: "Lorem ipsum dolor sit",
+        items: ['item1', 'item2']
+      };
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Header, {
+        title: app.title,
+        description: app.description
+      }), /*#__PURE__*/React.createElement(TodoList, {
+        items: app.items
+      }), /*#__PURE__*/React.createElement(Action, null));
     }
   }]);
   return TodoApp;
@@ -41,7 +51,12 @@ var TodoList = /*#__PURE__*/function (_React$Component2) {
   _createClass(TodoList, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement(TodoItem, null));
+      return /*#__PURE__*/React.createElement("ul", null, this.props.items.map(function (item, index) {
+        return /*#__PURE__*/React.createElement(TodoItem, {
+          key: index,
+          item: item
+        });
+      }));
     }
   }]);
   return TodoList;
@@ -56,11 +71,21 @@ var TodoItem = /*#__PURE__*/function (_React$Component3) {
   _createClass(TodoItem, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("li", null, "Todo item");
+      return /*#__PURE__*/React.createElement("li", null, " ", this.props.item);
     }
   }]);
   return TodoItem;
 }(React.Component);
+/*  const Header = function (props){
+  
+      return (
+         <div>
+            <h1 >{props.title}</h1>
+            <div>Lorem, ipsum dolor.12</div>
+         </div>
+        
+      );
+}  */
 var Header = /*#__PURE__*/function (_React$Component4) {
   _inherits(Header, _React$Component4);
   var _super4 = _createSuper(Header);
@@ -71,7 +96,7 @@ var Header = /*#__PURE__*/function (_React$Component4) {
   _createClass(Header, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Todo Application"), /*#__PURE__*/React.createElement("div", null, "Lorem, ipsum dolor.12"));
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, this.props.title), /*#__PURE__*/React.createElement("div", null, this.props.description));
     }
   }]);
   return Header;
