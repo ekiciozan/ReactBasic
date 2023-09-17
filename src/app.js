@@ -7,9 +7,26 @@ class TodoApp extends React.Component{
       return (
          <div>
             <Header />
-            <Todo />
+            <TodoList />
             <Action />
          </div>
+      );
+   }
+}
+class TodoList extends React.Component{
+   render() {
+      return (
+         <ul>
+            <TodoItem/>
+            
+         </ul>
+      );
+   }
+}
+class TodoItem extends React.Component {
+   render ()  {
+      return (
+       <li>Todo item</li>
       );
    }
 }
@@ -25,17 +42,7 @@ class Header extends React.Component{
    }
 }
 
-class Todo extends React.Component{
-   render() {
-      return (
-         <ul>
-            <li>item1</li>
-            <li>item2</li>
-            <li>item3</li>
-         </ul>
-      );
-   }
-}
+
 class Action extends React.Component{
    render() {
       return (
